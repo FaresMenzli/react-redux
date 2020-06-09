@@ -2,12 +2,29 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { createStore,applyMiddleware   } from 'redux';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import * as serviceWorker from './serviceWorker';
+import { Provider } from 'react-redux';
+import Reducer from './Components/Reducer';
+
+const logger = store => next => action => {
+console.log("dispatiching",action)
+let result = next(action)
+console.log("next state",store.getState())
+
+
+  return result
+  }
+
+const store = createStore(Reducer,applyMiddleware(logger))
 
 ReactDOM.render(
+  <Provider store={store}>
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
+  </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 );
 

@@ -1,7 +1,10 @@
 .App {
   text-align: center;
 }
-
+.font{
+  font-family: 'Metal Mania', cursive;
+  color: aliceblue
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
